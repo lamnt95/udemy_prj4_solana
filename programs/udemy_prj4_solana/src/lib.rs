@@ -6,13 +6,13 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 pub mod udemy_prj4_solana {
     use super::*;
     pub fn create(ctx: Context<Create>, init_msg: String) -> ProgramResult {
-        let calculator = &nut ctx.accounts.calculator;
+        let calculator = &mut ctx.accounts.calculator;
         calculator.greeting = init_msg;
         Ok(())
     }
 }
 
-#derive(Accounts)
+#[derive(Accounts)]
 pub struct create<'info> {
     #[account(init, payer=user, space=264)]
     pub calculator: Account<'info, Calculator>,
