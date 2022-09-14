@@ -1,14 +1,13 @@
-const assert = require("assert")
-const anchor = require("@project-serum/anchor")
-
-const { SystemProgram } = anchor.web3
+const assert = require("assert");
+const anchor = require("@project-serum/anchor");
+const { SystemProgram } = anchor.web3;
 
 describe("test", () => {
   const provider = anchor.Provider.local();
   anchor.setProvider(provider);
   const calculator = anchor.web3.Keypair.generate();
   const program = anchor.workspace.UdemyPrj4Solana;
-  if ("it", async () => {
+  if ("Creates a calculator", async () => {
     await program.rpc.create(
       "Hello solana",
       {
