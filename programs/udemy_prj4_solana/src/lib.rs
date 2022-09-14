@@ -13,11 +13,11 @@ pub mod udemy_prj4_solana {
 }
 
 #[derive(Accounts)]
-pub struct create<'info> {
+pub struct Create<'info> {
     #[account(init, payer=user, space=264)]
     pub calculator: Account<'info, Calculator>,
     #[account(mut)]
-    pub user: Sign<'info>
+    pub user: Signer<'info>
     pub system_program: Program<'info, System>
 }
 
