@@ -5,11 +5,25 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 #[program]
 pub mod udemy_prj4_solana {
     use super::*;
-
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
+    pub fn create(ctx: Context<Create>, init_msg: String) -> ProgramResult {
+        let calculator = &nut ctx.accounts.calculator;
+        calculator.greeting = init_msg;
         Ok(())
     }
 }
 
-#[derive(Accounts)]
-pub struct Initialize {}
+#derive(Accounts)
+pub struct create<'info> {
+    #[account(init, payer=user, space=264)]
+    pub calculator: Account<'info, Calculator>,
+    #[account(mut)]
+    pub user: Sign<'info>
+    pub system_program: Program<'info, System>
+}
+
+#[account]
+pub struct Calculator {
+    pub greeting: String,
+    pub result: i64,
+    pub remainder: i64
+}
